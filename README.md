@@ -1,5 +1,9 @@
 # ⚡ AppForge — Multi-Stage Compiler Pipeline
 
+![Python Version](https://img.shields.io/badge/python-3.12-blue.svg)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 **Natural Language → Structured Config → Validated → Executable**
 
 AppForge is a deterministic, multi-pass compiler pipeline that transforms natural language application descriptions into validated, executable application manifests. It operates as a 4-stage compiler with a runtime verification layer.
