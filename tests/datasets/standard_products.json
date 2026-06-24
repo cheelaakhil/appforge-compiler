@@ -1,0 +1,82 @@
+[
+    {
+        "id": "crm_01",
+        "name": "CRM with Contact Management",
+        "prompt": "Build a customer relationship management system with contact management, deals pipeline tracking, email integration, task scheduling, and reporting dashboard. Users include sales reps, sales managers, and admins. Sales reps can manage their own contacts and deals. Managers can view team performance. Admins have full access.",
+        "expected_entities": ["User", "Contact", "Deal", "Task", "Email", "Report"],
+        "expected_min_tables": 5,
+        "expected_min_endpoints": 15
+    },
+    {
+        "id": "ecommerce_02",
+        "name": "E-Commerce Marketplace",
+        "prompt": "Create an e-commerce marketplace where vendors can list products, customers can browse and purchase items, and admins manage the platform. Include product categories, shopping cart, order management, payment processing via Stripe, product reviews, and a vendor dashboard showing sales analytics.",
+        "expected_entities": ["User", "Product", "Category", "Order", "Cart", "Review", "Payment"],
+        "expected_min_tables": 7,
+        "expected_min_endpoints": 20
+    },
+    {
+        "id": "project_mgmt_03",
+        "name": "Project Management Tool",
+        "prompt": "Build a project management tool similar to Trello. Users can create projects, add boards with columns, create cards/tasks that can be dragged between columns. Support task assignments, due dates, labels, comments on tasks, file attachments, and team member management. Include a calendar view and activity log.",
+        "expected_entities": ["User", "Project", "Board", "Column", "Card", "Comment", "Label", "Attachment"],
+        "expected_min_tables": 7,
+        "expected_min_endpoints": 18
+    },
+    {
+        "id": "social_media_04",
+        "name": "Social Media Feed",
+        "prompt": "Create a social media platform where users can create profiles, post text and image content, follow other users, like and comment on posts, and receive notifications. Include a personalized feed algorithm, direct messaging between users, and content moderation tools for admins.",
+        "expected_entities": ["User", "Post", "Comment", "Like", "Follow", "Message", "Notification"],
+        "expected_min_tables": 6,
+        "expected_min_endpoints": 18
+    },
+    {
+        "id": "restaurant_05",
+        "name": "Restaurant Reservation System",
+        "prompt": "Build a restaurant reservation system. Customers can search restaurants by cuisine and location, view menus, make reservations for specific dates and party sizes, and leave reviews. Restaurant owners can manage their restaurant profile, menu items, table availability, and view reservation analytics. Include waitlist management and email confirmations.",
+        "expected_entities": ["User", "Restaurant", "Menu", "MenuItem", "Reservation", "Review", "Table"],
+        "expected_min_tables": 6,
+        "expected_min_endpoints": 16
+    },
+    {
+        "id": "lms_06",
+        "name": "Learning Management System",
+        "prompt": "Create a learning management system where instructors can create courses with modules and lessons, upload video content and documents, create quizzes and assignments. Students can enroll in courses, track progress, submit assignments, and view grades. Include a discussion forum for each course and certificate generation upon completion.",
+        "expected_entities": ["User", "Course", "Module", "Lesson", "Quiz", "Assignment", "Enrollment", "Grade"],
+        "expected_min_tables": 8,
+        "expected_min_endpoints": 20
+    },
+    {
+        "id": "inventory_07",
+        "name": "Inventory Tracking System",
+        "prompt": "Build an inventory management system for a warehouse. Track products with SKUs, manage stock levels across multiple warehouse locations, handle purchase orders from suppliers and sales orders to customers. Include barcode scanning support, low stock alerts, and inventory reports. Users include warehouse staff, purchasing managers, and admins.",
+        "expected_entities": ["User", "Product", "Warehouse", "StockLevel", "PurchaseOrder", "SalesOrder", "Supplier"],
+        "expected_min_tables": 7,
+        "expected_min_endpoints": 18
+    },
+    {
+        "id": "blog_cms_08",
+        "name": "Blog/CMS Platform",
+        "prompt": "Create a content management system for blogging. Authors can write and publish articles with rich text editing, add categories and tags, upload images. Editors can review and approve drafts. Readers can browse articles, search content, subscribe to newsletters, and leave comments. Include SEO metadata management and analytics for page views.",
+        "expected_entities": ["User", "Article", "Category", "Tag", "Comment", "Subscription"],
+        "expected_min_tables": 6,
+        "expected_min_endpoints": 15
+    },
+    {
+        "id": "event_ticketing_09",
+        "name": "Event Ticketing System",
+        "prompt": "Build an event ticketing platform. Event organizers can create events with multiple ticket tiers, set capacity limits, and manage attendee check-in. Attendees can browse events, purchase tickets, receive QR code tickets via email, and transfer tickets to others. Include a seating chart builder, promo codes, and event analytics dashboard.",
+        "expected_entities": ["User", "Event", "TicketTier", "Ticket", "Purchase", "PromoCode", "CheckIn"],
+        "expected_min_tables": 6,
+        "expected_min_endpoints": 18
+    },
+    {
+        "id": "hr_portal_10",
+        "name": "HR Employee Portal",
+        "prompt": "Create an HR employee portal for a mid-size company. Employees can view their profile, submit time-off requests, track attendance, view pay stubs, and access company documents. Managers can approve time-off requests and view team reports. HR admins can manage employee records, departments, job positions, run payroll, and generate compliance reports.",
+        "expected_entities": ["User", "Department", "Position", "TimeOffRequest", "Attendance", "PayStub", "Document"],
+        "expected_min_tables": 7,
+        "expected_min_endpoints": 20
+    }
+]

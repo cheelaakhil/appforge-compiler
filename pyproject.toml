@@ -1,0 +1,36 @@
+[project]
+name = "appforge"
+version = "0.1.0"
+description = "Multi-stage compiler pipeline: Natural Language → Config → Executable App"
+requires-python = ">=3.11"
+dependencies = [
+    "google-genai>=1.0.0",
+    "groq>=0.5.0",
+    "pydantic>=2.7",
+    "click>=8.1",
+    "rich>=13.7",
+    "sqlalchemy>=2.0",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "httpx>=0.27",
+    "python-dotenv>=1.0",
+    "thefuzz>=0.22",
+    "sse-starlette>=2.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+]
+
+[project.scripts]
+appforge = "src.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["src*"]

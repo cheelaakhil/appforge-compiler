@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppForge — AI Compiler Pipeline</title>
+    <meta name="description" content="Transform natural language descriptions into validated, executable application manifests using a multi-stage compiler pipeline.">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+    <!-- ═══ Header ═══ -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <span class="logo-text">AppForge</span>
+                <span class="logo-badge">Compiler v0.1</span>
+            </div>
+            <div class="header-meta">
+                <span id="provider-info" class="provider-badge">Loading...</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ Main Content ═══ -->
+    <main class="main">
+
+        <!-- ─── Input Section ─── -->
+        <section class="card input-section" id="input-section">
+            <div class="card-header">
+                <h1 class="card-title">
+                    <span class="icon">📝</span>
+                    Describe Your Application
+                </h1>
+            </div>
+            <div class="card-body">
+                <textarea
+                    id="prompt-input"
+                    class="prompt-textarea"
+                    placeholder="Describe the application you want to build...&#10;&#10;Example: Build a CRM with login, contacts, dashboard, role-based access, and premium plan with payments. Admins can see analytics."
+                    spellcheck="false"
+                ></textarea>
+
+                <div class="input-actions">
+                    <div class="example-prompts">
+                        <button class="example-btn" data-prompt="Build a CRM with login, contacts, dashboard, role-based access, and premium plan with payments. Admins can see analytics.">CRM</button>
+                        <button class="example-btn" data-prompt="Create an e-commerce platform with product catalog, shopping cart, checkout with Stripe, order tracking, and admin inventory management.">E-Commerce</button>
+                        <button class="example-btn" data-prompt="Build a project management tool like Trello with boards, lists, cards, drag-and-drop, team collaboration, and deadline notifications.">Project Mgmt</button>
+                        <button class="example-btn" data-prompt="Build a learning management system with courses, video lessons, quizzes, progress tracking, certificates, and instructor dashboards.">LMS</button>
+                        <button class="example-btn" data-prompt="todo">Edge: Vague</button>
+                    </div>
+                    <button id="generate-btn" class="generate-btn" onclick="startGeneration()">
+                        <span class="btn-text">⚡ Generate</span>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── Pipeline Progress ─── -->
+        <section class="card progress-section" id="progress-section">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="icon">⚙️</span>
+                    Pipeline Progress
+                </h2>
+                <span id="pipeline-timer" class="stage-meta" style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-muted);">0.0s</span>
+            </div>
+            <div class="card-body">
+                <div id="pipeline-stages" class="pipeline-stages">
+                    <!-- Stages rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── Error Display ─── -->
+        <section class="card error-section" id="error-section">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="icon">❌</span>
+                    Pipeline Error
+                </h2>
+            </div>
+            <div class="card-body">
+                <div id="error-box" class="error-box"></div>
+            </div>
+        </section>
+
+        <!-- ─── Results Summary ─── -->
+        <section class="card results-section" id="results-section">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="icon">📊</span>
+                    Results Summary
+                </h2>
+            </div>
+            <div class="card-body">
+                <!-- Status Badges -->
+                <div id="status-badges" class="status-row"></div>
+
+                <!-- Summary Cards -->
+                <div id="summary-grid" class="summary-grid"></div>
+
+                <!-- Telemetry -->
+                <div id="telemetry-section" style="margin-top: 1.5rem;">
+                    <h3 style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">Stage Telemetry</h3>
+                    <div id="telemetry-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── JSON Output ─── -->
+        <section class="card json-section" id="json-section">
+            <div class="card-header" style="padding-bottom: 0; border-bottom: none;">
+                <h2 class="card-title">
+                    <span class="icon">🔍</span>
+                    Generated Manifest
+                </h2>
+            </div>
+            <div class="tab-bar" id="tab-bar">
+                <button class="tab-btn active" data-tab="full">Full Manifest</button>
+                <button class="tab-btn" data-tab="intent">Intent</button>
+                <button class="tab-btn" data-tab="design">Design IR</button>
+                <button class="tab-btn" data-tab="db">DB Schema</button>
+                <button class="tab-btn" data-tab="api">API Schema</button>
+                <button class="tab-btn" data-tab="ui">UI Schema</button>
+                <button class="tab-btn" data-tab="validation">Validation</button>
+                <button class="tab-btn" data-tab="runtime">Runtime</button>
+            </div>
+            <div class="json-viewer" id="json-viewer">
+                <button class="copy-btn" id="copy-btn" onclick="copyJSON()">📋 Copy</button>
+                <pre id="json-output"></pre>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══ Footer ═══ -->
+    <footer class="footer">
+        <p>AppForge Multi-Stage Compiler Pipeline — Natural Language → Config → Executable App</p>
+        <p style="margin-top: 0.25rem;">Built with FastAPI · Pydantic · SQLAlchemy · SSE</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
